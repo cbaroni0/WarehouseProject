@@ -186,7 +186,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &38095173
@@ -311,8 +311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.799997, y: -21.519215}
-  m_SizeDelta: {x: 120, y: 20}
+  m_AnchoredPosition: {x: 30, y: -21.519215}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &303620883
 MonoBehaviour:
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 315769494}
   - component: {fileID: 315769493}
   m_Layer: 5
-  m_Name: nameTextbox
+  m_Name: idTextbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -450,8 +450,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.799992, y: 44.670795}
-  m_SizeDelta: {x: 120, y: 20}
+  m_AnchoredPosition: {x: 30, y: 44.671}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &315769493
 MonoBehaviour:
@@ -686,9 +686,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 434406315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd8b177e2b041443585c0ad0c6614ee9, type: 3}
+  m_Script: {fileID: 11500000, guid: 3adc14613c3c8ea4795f7b78c8a16437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: {fileID: 38095172}
+  height: {fileID: 1265515377}
+  length: {fileID: 1347190218}
+  width: {fileID: 1888545518}
 --- !u!1 &625114722
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +759,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Enter length...
 --- !u!222 &625114725
@@ -921,7 +925,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 434406317}
+      - m_Target: {fileID: 0}
         m_MethodName: backToMainMenu
         m_Mode: 1
         m_Arguments:
@@ -1280,7 +1284,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter name...
+  m_Text: Enter ID...
 --- !u!222 &1207444494
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1355,7 +1359,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &1265515378
@@ -1432,7 +1436,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &1347190219
@@ -1480,8 +1484,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.799988, y: -54.8292}
-  m_SizeDelta: {x: 120, y: 20}
+  m_AnchoredPosition: {x: 30, y: -54.8292}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1462631714
 MonoBehaviour:
@@ -1885,7 +1889,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
 --- !u!222 &1888545519
@@ -1978,7 +1982,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 434406317}
+      - m_Target: {fileID: 0}
         m_MethodName: toWarehouse
         m_Mode: 1
         m_Arguments:
@@ -2091,7 +2095,7 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Enter height...
 --- !u!222 &1948140103
@@ -2370,8 +2374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.8, y: 12.070787}
-  m_SizeDelta: {x: 120, y: 20}
+  m_AnchoredPosition: {x: 30, y: 12.070787}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090114799
 MonoBehaviour:

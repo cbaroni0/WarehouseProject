@@ -161,40 +161,53 @@ public class InputWHDim : MonoBehaviour
     public void increment()
     {
         int itemAt = Int32.Parse(itemIDInput.text.ToString());
-        wh[chosen].items[itemAt]._Qty += 1;
+        if(wh[chosen].items.Count > itemAt)
+        {
+            wh[chosen].items[itemAt]._Qty += 1;
 
-        runAlg();
-        fillTable();
+            runAlg();
+            fillTable();
+        }
     }
 
     public void decrement()
     {
         int itemAt = Int32.Parse(itemIDInput.text.ToString());
-        wh[chosen].items[itemAt]._Qty -= 1;
+        if (wh[chosen].items.Count > itemAt)
+        {
+            wh[chosen].items[itemAt]._Qty -= 1;
 
-        runAlg();
-        fillTable();
+            runAlg();
+            fillTable();
+        }
     }
 
     public void deleteItem()
     {
         int itemAt = Int32.Parse(itemIDInput.text.ToString());
-        wh[chosen].items.RemoveAt(itemAt);
+        if (wh[chosen].items.Count > itemAt)
+        {
+            wh[chosen].items.RemoveAt(itemAt);
 
-        runAlg();
-        fillTable();
+            runAlg();
+            fillTable();
+        }
     }
 
     public void addItem()
     {
-        int len = Int32.Parse(lengthInput.text.ToString());
-        int wid = Int32.Parse(widthInput.text.ToString());
-        int hi = Int32.Parse(heightInput.text.ToString());
-        int qty = Int32.Parse(quantityInput.text.ToString());
-        wh[chosen].items.Add(new WarehouseItem(len, wid, hi, qty));
+        if( !string.IsNullOrEmpty(lengthInput.text.ToString()) && !string.IsNullOrEmpty(widthInput.text.ToString()) &&
+            !string.IsNullOrEmpty(heightInput.text.ToString()) && !string.IsNullOrEmpty(quantityInput.text.ToString()))
+        {
+            int len = Int32.Parse(lengthInput.text.ToString());
+            int wid = Int32.Parse(widthInput.text.ToString());
+            int hi = Int32.Parse(heightInput.text.ToString());
+            int qty = Int32.Parse(quantityInput.text.ToString());
+            wh[chosen].items.Add(new WarehouseItem(len, wid, hi, qty));
 
-        runAlg();
-        fillTable();
+            runAlg();
+            fillTable();
+        }
     }
 
     public void save()
