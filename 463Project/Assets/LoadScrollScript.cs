@@ -29,7 +29,7 @@ public class LoadScrollScript : MonoBehaviour
         {
             GameObject newItem = Instantiate(prefab) as GameObject;
             newItem.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = wh[i]._ID.ToString();
-            string text = wh[i]._Length.ToString() + "x" + wh[i]._Width.ToString() + "x" + wh[i]._Height.ToString();
+            string text = wh[i]._Width.ToString() + "x" + wh[i]._Height.ToString() + "x" + wh[i]._Length.ToString();
             Debug.Log(text);
             newItem.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = text;
             newItem.transform.SetParent(parent.transform, false);

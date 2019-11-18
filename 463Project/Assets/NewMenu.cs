@@ -28,12 +28,12 @@ public class NewMenu : MonoBehaviour
         string h = height.text.ToString();
         string l = length.text.ToString();
         string w = width.text.ToString();
-        Debug.Log(i + h + l + w);
+        Debug.Log(i + w + h + l);
         if (!string.IsNullOrEmpty(i) && !string.IsNullOrEmpty(l) &&
             !string.IsNullOrEmpty(w) && !string.IsNullOrEmpty(h))
         {
-            wh.Add(new Warehouse(Int32.Parse(id.text.ToString()), Int32.Parse(length.text.ToString()),
-                Int32.Parse(width.text.ToString()), Int32.Parse(height.text.ToString())));
+            wh.Add(new Warehouse(Int32.Parse(id.text.ToString()), Int32.Parse(width.text.ToString()),
+                Int32.Parse(height.text.ToString()), Int32.Parse(length.text.ToString())));
 
             save();
             
@@ -78,7 +78,7 @@ public class NewMenu : MonoBehaviour
         //write warehouses
         for (int i = 0; i < wh.Count; i++)
         {
-            string whStr = wh[i]._ID.ToString() + " " + wh[i]._Length.ToString() + " " + wh[i]._Width.ToString() + " " + wh[i]._Height.ToString();
+            string whStr = wh[i]._ID.ToString() + " " + wh[i]._Width.ToString() + " " + wh[i]._Height.ToString() + " " + wh[i]._Length.ToString();
             Debug.Log(whStr);
             outFile.WriteLine(whStr);
         }

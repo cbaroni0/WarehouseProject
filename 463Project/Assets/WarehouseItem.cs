@@ -18,8 +18,11 @@ namespace WarehouseSimulator
             this._Qty = quantity;
             this._IsPacked = false;
         }
+        //width
         public int _Dim1 { get; set; }
+        //height
         public int _Dim2 { get; set; }
+        //length
         public int _Dim3 { get; set; }
         public int Volume
         {

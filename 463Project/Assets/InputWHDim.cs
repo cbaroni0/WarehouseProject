@@ -18,6 +18,7 @@ public class InputWHDim : MonoBehaviour
     public Text widthInput;
     public Text heightInput;
     public Text quantityInput;
+    public Text highlightInput;
 
     private int chosen;
     private string path = "Assets/Files/data.txt";
@@ -38,6 +39,7 @@ public class InputWHDim : MonoBehaviour
 
     public void toWarehouse()
     {
+        runAlg();
         SceneManager.LoadScene(4);
     }
 
@@ -101,11 +103,28 @@ public class InputWHDim : MonoBehaviour
 
         //Results
         List<ContainerPackingResult> result = PackingService.Pack(containers, itemsToPack, algorithms);
+        //output results
+        for(int i = 0; i < result[0].AlgorithmPackingResults[0].PackedItems.Capacity; i++)
+        {
+            string r = "item no# " + i + "\nCoordXYZ: " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].CoordX + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].CoordY + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].CoordZ +
+                "\nDim123: " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].Dim1 + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].Dim2 + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].Dim3 + " " +
+                "\nPackDim123 " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimX + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimY + " " +
+                result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimZ;
+            Debug.Log(r);
+        }//end log of result
 
         //Writing Packed File
         StreamWriter outFile = new StreamWriter("Assets/Files/pack.txt", false);
         //write warehouse
-        string whStr = wh[chosen]._ID.ToString() + " " + wh[chosen]._Length.ToString() + " " + wh[chosen]._Width.ToString() + " " + wh[chosen]._Height.ToString();
+        string whStr = wh[chosen]._ID.ToString() + " " + wh[chosen]._Width.ToString() + " " + wh[chosen]._Height.ToString() + " " + wh[chosen]._Length.ToString();
         Debug.Log(whStr);
         outFile.WriteLine(whStr);
 
@@ -116,13 +135,30 @@ public class InputWHDim : MonoBehaviour
         {
             for (int j = 0; j < wh[chosen].items[i]._Qty; j++)
             {
-                string itemStr = wh[chosen].items[i]._Dim1.ToString() + " " + wh[chosen].items[i]._Dim2.ToString() + " " + 
-                    wh[chosen].items[i]._Dim3.ToString() + " " + result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordX + " " + 
-                    result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordY + " " +
-                    result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordZ + " " + "false";
-                Debug.Log(itemStr);
-                outFile.WriteLine(itemStr);
-                
+                //check if item is packed
+                if (result[0].AlgorithmPackingResults[0].PackedItems[resCount+j].IsPacked)
+                {
+                    //sets is packed to true
+                    wh[chosen].items[i]._IsPacked = true;
+                        
+                    string itemStr = result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].PackDimX + " " +
+                        result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].PackDimY + " " +
+                        result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].PackDimZ + " " + 
+                        result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordX + " " +
+                        result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordY + " " +
+                        result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].CoordZ + " ";
+                    if(!string.IsNullOrEmpty(highlightInput.text.ToString()) && 
+                        highlightInput.text.ToString() == result[0].AlgorithmPackingResults[0].PackedItems[resCount + j].ID.ToString())
+                    {
+                        itemStr += "true";
+                    }
+                    else
+                    {
+                        itemStr += "false";
+                    }
+                    Debug.Log(itemStr);
+                    outFile.WriteLine(itemStr);
+                }
             }
             resCount += wh[chosen].items[i]._Qty;
         }
@@ -203,7 +239,7 @@ public class InputWHDim : MonoBehaviour
             int wid = Int32.Parse(widthInput.text.ToString());
             int hi = Int32.Parse(heightInput.text.ToString());
             int qty = Int32.Parse(quantityInput.text.ToString());
-            wh[chosen].items.Add(new WarehouseItem(len, wid, hi, qty));
+            wh[chosen].items.Add(new WarehouseItem(wid, hi, len, qty));
 
             runAlg();
             fillTable();
@@ -216,7 +252,7 @@ public class InputWHDim : MonoBehaviour
         //write warehouses
         for (int i = 0; i < wh.Count; i++)
         {
-            string whStr = wh[i]._ID.ToString() + " " + wh[i]._Length.ToString() + " " + wh[i]._Width.ToString() + " " + wh[i]._Height.ToString();
+            string whStr = wh[i]._ID.ToString() + " " + wh[i]._Width.ToString() + " " + wh[i]._Height.ToString() + " " + wh[i]._Length.ToString();
             Debug.Log(whStr);
             outFile.WriteLine(whStr);
         }

@@ -10,7 +10,7 @@ namespace WarehouseSimulator
     {
         private int _Vol;
         public List<WarehouseItem> items;
-        public Warehouse (int id, int length, int width, int height)
+        public Warehouse (int id, int width, int height, int length)
         {
             this._ID = id;
             this._Length = length;
