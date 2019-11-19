@@ -29,7 +29,10 @@ public class InputWHDim : MonoBehaviour
     private void Start()
     {
         load_warehouse();
-        runAlg();
+        if (wh[chosen].items.Count > 0)
+        {
+            runAlg();
+        }
         fillTable();
     }
     public void backToMainMenu()
