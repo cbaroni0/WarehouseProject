@@ -29,11 +29,21 @@ public class InputWHDim : MonoBehaviour
     private void Start()
     {
         load_warehouse();
-        if (wh[chosen].items.Count > 0)
+
+        //finding location of loaded warehouse in warehouse list
+        for (int i = 0; i < wh.Count; i++)
+        {
+            if (wh[i]._ID == PlayerPrefs.GetInt("loadWH"))
+            {
+                chosen = i;
+            }
+        }
+
+        if (wh[chosen].items.Count != 0)
         {
             runAlg();
+            fillTable();
         }
-        fillTable();
     }
     public void backToMainMenu()
     {
@@ -72,33 +82,18 @@ public class InputWHDim : MonoBehaviour
     }
     public void runAlg()
     {
-        //finding location of loaded warehouse in warehouse list
-        bool temp = true;
-        int count = 0;
-        while (temp)
-        {
-            if (wh[count]._ID == PlayerPrefs.GetInt("loadWH"))
-            {
-                temp = false;
-                chosen = count;
-            }
-            else
-            {
-                count++;
-            }
-        }
 
         List<Container> containers = new List<Container>();
         List<Item> itemsToPack = new List<Item>();
         List<int> algorithms = new List<int>();
 
         //containers.Add(new Container(id, length, width, height));
-        containers.Add(new Container(wh[count]._ID, wh[count]._Length, wh[count]._Width, wh[count]._Height));
+        containers.Add(new Container(wh[chosen]._ID, wh[chosen]._Length, wh[chosen]._Width, wh[chosen]._Height));
 
         //itemsToPack.Add(new Item(id, dim1, dim2, dim3, quantity));
-        for(int i = 0; i < wh[count].items.Count; i++)
+        for(int i = 0; i < wh[chosen].items.Count; i++)
         {
-            itemsToPack.Add(new Item(i, wh[count].items[i]._Dim1, wh[count].items[i]._Dim2, wh[count].items[i]._Dim3, wh[count].items[i]._Qty));
+            itemsToPack.Add(new Item(i, wh[chosen].items[i]._Dim1, wh[chosen].items[i]._Dim2, wh[chosen].items[i]._Dim3, wh[chosen].items[i]._Qty));
         }
 
         //DON'T CHANGE THIS
@@ -107,7 +102,7 @@ public class InputWHDim : MonoBehaviour
         //Results
         List<ContainerPackingResult> result = PackingService.Pack(containers, itemsToPack, algorithms);
         //output results
-        for(int i = 0; i < result[0].AlgorithmPackingResults[0].PackedItems.Capacity; i++)
+        for(int i = 0; i < result[0].AlgorithmPackingResults[0].PackedItems.Count; i++)
         {
             string r = "item no# " + i + "\nCoordXYZ: " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].CoordX + " " +
@@ -117,7 +112,7 @@ public class InputWHDim : MonoBehaviour
                 result[0].AlgorithmPackingResults[0].PackedItems[i].Dim1 + " " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].Dim2 + " " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].Dim3 + " " +
-                "\nPackDim123 " +
+                "\nPackDim123: " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimX + " " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimY + " " +
                 result[0].AlgorithmPackingResults[0].PackedItems[i].PackDimZ;
