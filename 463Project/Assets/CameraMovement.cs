@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using UnityEngine;
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour
@@ -48,7 +51,7 @@ public class CameraMovement : MonoBehaviour
             }
             y = ClampAngle(y, yMinLimit, yMaxLimit);
 
-            Quaternion rotation = Quaternion.Euler(y, x, 0);
+            Quaternion rotation = Quaternion.Euler(y, x, 0); //-V3066
 
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel") * zoomSpeed, distanceMin, distanceMax);
 

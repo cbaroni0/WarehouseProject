@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +26,7 @@ public class LoadMenu : MonoBehaviour
             string[] words = line.Split(' ');
             wh.Add(new Warehouse(Int32.Parse(words[0]), Int32.Parse(words[1]), Int32.Parse(words[2]), Int32.Parse(words[3])));
         }
+        file.Close();
     }
     public void backToMainMenu()
     {

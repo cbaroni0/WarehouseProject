@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WarehouseSimulator;
@@ -27,13 +30,13 @@ public class LoadScrollScript : MonoBehaviour
 
         for (int i = 0; i < wh.Count; i++)
         {
-            GameObject newItem = Instantiate(prefab) as GameObject;
+            GameObject newItem = Instantiate(prefab) as GameObject; //-V3051
             newItem.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = wh[i]._ID.ToString();
             string text = wh[i]._Width.ToString() + "x" + wh[i]._Height.ToString() + "x" + wh[i]._Length.ToString();
             Debug.Log(text);
             newItem.transform.GetChild(1).transform.GetChild(0).GetComponent<Text>().text = text;
             newItem.transform.SetParent(parent.transform, false);
         }
-
+        file.Close();
     }
 }

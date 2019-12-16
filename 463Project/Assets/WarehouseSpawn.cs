@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -73,6 +76,7 @@ public class WarehouseSpawn : MonoBehaviour
                 cubes[cubes.Count - 1].GetComponent<MeshRenderer>().material = specMat;
             }
         }
+        file.Close();
     }
 
     // Update is called once per frame

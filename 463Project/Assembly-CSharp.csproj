@@ -80,6 +80,7 @@
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Cutout Wireframe.shader" />
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Wireframe.shader" />
     <None Include="Assets\UCLAGameLab\Wireframe\Shaders\UCLA GameLab Double-Sided Cutout Wireframe.shader" />
+    <None Include="Assets\Files\data1.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Chris Baroni/Documents/UnityWorkspace/UntitledWarehouseSimulator/WarehouseProject/463Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

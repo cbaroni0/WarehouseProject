@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -79,6 +82,7 @@ public class InputWHDim : MonoBehaviour
             }
 
         }
+        file.Close();
     }
     public void runAlg()
     {
@@ -181,7 +185,7 @@ public class InputWHDim : MonoBehaviour
 
         for (int j = 0; j < wh[count].items.Count; j++) 
         {
-            GameObject newItem = Instantiate(prefab) as GameObject;
+            GameObject newItem = Instantiate(prefab) as GameObject; //-V3051
             newItem.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text = j.ToString();
             string text = wh[count].items[j]._Dim1.ToString() + "x" + wh[count].items[j]._Dim2.ToString() + "x" + wh[count].items[j]._Dim3.ToString();
             Debug.Log(text);
